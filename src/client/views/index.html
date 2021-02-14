@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Test</title>
+        <title>Sentiment Evaluation</title>
         <link rel="stylesheet" href="/styles/resets.css">
         <link rel="stylesheet" href="/styles/base.css">
         <link rel="stylesheet" href="/styles/header.css">
@@ -13,6 +13,9 @@
     <body>
 
         <header>
+            <h1>
+                Sentient Evaluation
+             </h1>
             <div class="">
                 Logo
             </div>
@@ -22,6 +25,7 @@
         </header>
 
         <main>
+            <p>Please Enter a URL of an article or a blog to discover its sentiment evaluation.</p>
             <section>
                 <form class="" onsubmit="return handleSubmit(event)">
                     <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
@@ -31,11 +35,24 @@
 
             <section>
                 <strong>Form Results:</strong>
-                <div id="results"></div>
+                <div id="polarity"></div>
+                <div id="agreement"></div>
+                <div id="subjectivity"></div>
+                <div id="confidence"></div>
+                <div id="irony"></div>
             </section>
         </main>
 
         <footer>
+            <nav class="fnav">
+                <ul>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="https://github.com/edicostasp" target="_blank"><i class="fab fa-github-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                </ul>
+                <div class="copyright">© 2021</div>
+            </nav>
             <p>This is a footer</p>
         </footer>
 
