@@ -3,15 +3,16 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    checkForName(formText)
+    
+    //Client.checkForName(formText)
 
     if(Client.checkForURL(formText)) {
         console.log("::: Form Submitted :::")
 
         postData('http://localhost:8081/api', {url: formText})
 
-        //fetch('http://localhost:8080/test')
-        .then(res => res.json())
+        // fetch('http://localhost:8081/api')
+        // .then(res => res.json())
         .then(function(res) {
             document.getElementById('polarity').innerHTML = 'Polarity: '+polarityChecker(res.score_tag);
             document.getElementById("agreement").innerHTML = `Agreement: ${res.agreement}`;
@@ -24,6 +25,25 @@ function handleSubmit(event) {
     }
 }
 
+const postData = async (url = "", data = {}) => {
+    console.log('Analyzing:', data);
+    const response = await fetch(url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'cors',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    });
+    try {
+        const newData = await response.json();
+        console.log('Data received:', newData)
+        return newData;
+    } catch (error) {
+        console.log('error', error);
+    }
+};
 // API response output (https://www.meaningcloud.com/developer/sentiment-analysis/doc/2.1/response)
 const polarityChecker = (score) => {
     let display;
