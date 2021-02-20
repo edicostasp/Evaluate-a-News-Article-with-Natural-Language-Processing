@@ -1,19 +1,51 @@
-$keycolor: rgb(90, 102, 114);
+$primary-color: #2B2D42;
+$secondary-color: #8D99AE;
+$tertiary-color: #EDF2F4;
+$font-stack: 'Nunito Sans', sans-serif;
 
 body {
     display: flex;
     justify-content: center;
     flex-direction: column;
     min-height: 100vh;
+
+    font: 100% $font-stack;
+    background-color: $tertiary-color;
+
+    h1, h2, p, input::placeholder {
+        color: $primary-color;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 45px;
+    }
+
+    p, #cta, #results {
+        font-size: 18px;
+    }
 }
 
 main {
     flex: 2;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0px 160px;
 }
 
 section {
     max-width: 800px;
     margin: 50px auto;
+
+    width: 50%;
 }
 
 a:link,
@@ -22,6 +54,21 @@ a:visited {
     text-decoration: none;
 }
 
-a:hover {
-    color: $keycolor;
+@media only screen and (max-width: 980px) {
+    main {
+        flex-direction: column;
+        padding: 0px;
+        justify-content: space-evenly;
+    }
+
+    section {
+        width: 70%;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    section {
+        width: 90%;
+    }
 }

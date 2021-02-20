@@ -12,6 +12,10 @@ import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 
+
+alert("Welcome to my natural process language app")
+console.log("I'm working :)");
+
 export {
     checkForURL,
     handleSubmit

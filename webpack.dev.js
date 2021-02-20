@@ -25,11 +25,8 @@ module.exports = {
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
-                loader: 'file-loader',
-                options: {
-                  name: '[path][name].[ext]',
-                }
+                test: /\.html$/,
+                use: ["html-loader"],
             }
         ]
     },
@@ -39,7 +36,7 @@ module.exports = {
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({
-            path: path.join(__dirname, 'dist'),
+            // path: path.join(__dirname, 'dist'),
             // Simulate the removal of files
             dry: true,
             // Write Logs to Console
