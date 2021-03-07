@@ -16,7 +16,6 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
 
 // Cors allows the browser and server to communicate without any security interruptions
 // Origin Allowance
@@ -25,7 +24,6 @@ app.use(cors());
 
 //Main project folder
 app.use(express.static('dist'));
-
 console.log(__dirname);
 
 // Meaningcloud credentials for API
@@ -34,30 +32,42 @@ const apiKey = process.env.API_KEY;
 console.log(`Your API Key is ${process.env.API_KEY}`);
 let userInput = []
 
+// Port and Listening: designates which port the app will listen to for incoming requests
+port = 8081;
+app.listen(port, function () {
+    console.log(`Example app listening on port ${port}!`);
+})
+
 //Get Route
 app.get('/', function (req, res) {
     // res.sendFile(path.resolve('dist/index.html'));
     res.sendFile(path.resolve('src/client/views/index.html'));
 })
 
-app.get('/test', function (req, res) {
+app.get('/api', function (req, res) {
     res.send(mockAPIResponse);
 })
 
 // POST Route
-app.post('/api', async function(req, res) {
+app.post('/api', insertPost);
+async function insertPost(req, res) {
     userInput = req.body.url;
     console.log(`You entered: ${userInput}`);
     const apiURL = `${baseURL}key=${apiKey}&url=${userInput}&lang=en`;
-    console.log(userInput);
     const response = await fetch(apiURL);
+    console.log(userInput);
+    
     const mcData = await response.json();
     res.send(mcData);
     console.log(mcData);
-});
 
-// Port and Listening
-// designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log(`Example app listening on port 8081!`);
-})
+    objMcData = {
+        score: mcData.score_tag,
+        agreement: mcData.agreement,
+        subjectivity: mcData.subjectivity,
+        irony: mcData.irony,
+        confidence: mcData.confidence
+    }
+    console.log(objMcData);
+    response.send(objMcData)
+};

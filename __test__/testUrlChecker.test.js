@@ -1,32 +1,20 @@
 // Import the js file to test
 import { checkForURL } from "../src/client/js/urlChecker"
-require("babel-core/register");
-require("babel-polyfill");
 
-// the test with http/https protocol in the URL
-describe("with url protocol", () => {
-    test("should return true", () => {
-      const input = "https://www.google.com.br";
-      expect(checkUrl(input)).toBe(true);
-    });
-    test("should return true", () => {
-      const input = "http://www.google.com.br";
-      expect(checkUrl(input)).toBe(true);
-    });
+//Testing a valid URL
+describe("Check a valid URL", () => {
+  test('Testing a valid URL', () => {
+      const inputUrl = 'https://www.udacity.com';
+      const response = 1;
+      expect(checkForUrl(inputUrl)).toEqual(response);
   });
-  
-  // the test without http/https protocol in the URL
-  describe("without protocol", () => {
-    test("should return true", () => {
-      const input = "www.google.com.br";
-      expect(checkUrl(input)).toBe(false);
-    });
-    test("should return true", () => {
-      const input = "google.com.br";
-      expect(checkUrl(input)).toBe(false);
-    });
-    test("should return false", () => {
-      const input = "google . com . br";
-      expect(checkUrl(input)).toBe(false);
-    });
+});
+
+//Testing an invalid URL
+describe("Check an invalid URL", () => {
+  test('Testing an invalid URL', () => {
+      const inputUrl = 'udacity.com';
+      const response = 0;
+      expect(checkForUrl(inputUrl)).toEqual(response);
   });
+});
