@@ -21,7 +21,7 @@ describe("Testing the submit functionality", () => {
 describe ('Testing result of agreement', () => {
     test('result must be agreement', () => {
         const data = 'AGREEMENT';
-        const response = "agreement (the different elements have the same polarity)";
+        const response = "agreement!! (different elements have exactly the same polarity)";
         expect(checkAgreement(data)).toEqual(response);
     });
 })
@@ -30,7 +30,7 @@ describe ('Testing result of agreement', () => {
 describe ('Testing result of agreement', () => {
     test('result must be disagreement', () => {
         const data = 'DISAGREEMENT';
-        const response = "disagreement (there is disagreement between the different elements' polarity)";
+        const response = "disagreement!! (there is disagreement between different elements polarity)";
         expect(checkAgreement(data)).toEqual(response);
     });
 })

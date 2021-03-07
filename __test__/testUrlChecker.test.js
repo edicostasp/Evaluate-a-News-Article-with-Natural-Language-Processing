@@ -4,7 +4,7 @@ import { checkForURL } from "../src/client/js/urlChecker"
 //Testing a valid URL
 describe("Check a valid URL", () => {
   test('Testing a valid URL', () => {
-      const inputUrl = 'https://www.udacity.com';
+      const inputUrl = 'http://www.udacity.com';
       const response = 1;
       expect(checkForUrl(inputUrl)).toEqual(response);
   });

@@ -44,14 +44,14 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('src/client/views/index.html'));
 })
 
-app.get('/api', function (req, res) {
-    res.send(mockAPIResponse);
-})
+// app.get('/api', function (req, res) {
+//     res.send(mockAPIResponse);
+// })
 
 // POST Route
 app.post('/api', insertPost);
 async function insertPost(req, res) {
-    userInput = req.body.url;
+    userInput = req.body.input;
     console.log(`You entered: ${userInput}`);
     const apiURL = `${baseURL}key=${apiKey}&url=${userInput}&lang=en`;
     const response = await fetch(apiURL);

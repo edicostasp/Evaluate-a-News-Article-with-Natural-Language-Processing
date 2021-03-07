@@ -22,7 +22,7 @@ async function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('name').value
+    let formText = document.getElementById('input').value
     if(Client.checkForURL(formText)) {              //Client.checkForName(formText)
         console.log("::: Form Submitted :::")
         postData('http://localhost:8081/api', {url: formText})     // fetch('http://localhost:8081/api')
@@ -36,7 +36,7 @@ async function handleSubmit(event) {
 }
 
 const updateUI = async() =>{
-    const url = "http://localhost:8080/api";
+    const url = "http://localhost:8081/api";
     const req = await fetch (url);
     try {
         const info = await req.json();
@@ -53,43 +53,45 @@ const updateUI = async() =>{
 
 // API response output (https://www.meaningcloud.com/developer/sentiment-analysis/doc/2.1/response)
 const polarityChecker = (score) => {
-    let display;
+    let PolatiryCheckerResults;
     switch (score){
+        case 'NEW':
+            PolatiryCheckerResults = '0 neutral';
+            break;
         case 'P+':
-            display = 'strong positive';
+            PolatiryCheckerResults = '+++ Strong Positive';
             break;
         case 'P':
-            display = 'positive';
-            break;
-        case 'NEW':
-            display = 'neutral';
+            PolatiryCheckerResults = '+ Positive';
             break;
         case 'N':
-            display = 'negative';
+            PolatiryCheckerResults = '- negative';
             break;
         case 'N+':
-            display = 'strong negative';
+            PolatiryCheckerResults = '--- strong negative';
             break;
         case 'NONE':
-            display = 'no sentiment';
+            PolatiryCheckerResults = 'no sentiment (Empty)';
     }
-    return display;
+    return PolatiryCheckerResults;
 }
 
 //Check the agreement
 function checkAgreement(agreement){
-    let agree;
+    let agreed;
     switch (agreement){
         case "AGREEMENT":
-            agree = "agreement (the different elements have the same polarity)";
+            agreed = "agreement!! (different elements have exactly the same polarity)";
             break;
         case "DISAGREEMENT":
-            agree = "disagreement (there is disagreement between the different elements' polarity)";
+            agreed = "disagreement!! (there is disagreement between different elements polarity)";
             break;
     }
-    return agree;
+    return agreed;
 }
 
 export { handleSubmit }
+
 export { polarityChecker }
+
 export { checkAgreement }
