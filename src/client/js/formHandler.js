@@ -6,6 +6,7 @@ const postData = async (url = "", data = {}) => {
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(data)
     });

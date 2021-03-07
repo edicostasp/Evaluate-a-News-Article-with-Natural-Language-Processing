@@ -48,6 +48,9 @@ app.get('/', function (req, res) {
 //     res.send(mockAPIResponse);
 // })
 
+//Declarng new empty object
+let objMcData = {}; 
+
 // POST Route
 app.post('/api', insertPost);
 async function insertPost(req, res) {
@@ -60,7 +63,7 @@ async function insertPost(req, res) {
     const mcData = await response.json();
     res.send(mcData);
     console.log(mcData);
-
+    
     objMcData = {
         score: mcData.score_tag,
         agreement: mcData.agreement,
