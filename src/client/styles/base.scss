@@ -1,6 +1,5 @@
-$primary-color: #2B2D42;
-$secondary-color: #8D99AE;
-$tertiary-color: #EDF2F4;
+$secondary-color: lightblue;
+$tertiary-color: lightgreen;
 $font-stack: 'Nunito Sans', sans-serif;
 
 body {
@@ -8,12 +7,15 @@ body {
     justify-content: center;
     flex-direction: column;
     min-height: 100vh;
-
+    background-image: linear-gradient(to left top, #09264b, #0678b9, #0f7079, #129460, #36968e);
     font: 100% $font-stack;
     background-color: $tertiary-color;
 
     h1, h2, p, input::placeholder {
-        color: $primary-color;
+        color: #FFF;
+        font-size: 2em;
+        padding-top: 20px;
+        margin: 0 auto;
     }
 
     h1 {

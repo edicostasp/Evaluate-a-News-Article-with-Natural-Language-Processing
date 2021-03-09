@@ -40,13 +40,13 @@ app.listen(port, function () {
 
 //Get Route
 app.get('/', function (req, res) {
-    // res.sendFile(path.resolve('dist/index.html'));
-    res.sendFile(path.resolve('src/client/views/index.html'));
+    res.sendFile(path.resolve('dist/index.html'));
+    //res.sendFile(path.resolve('src/client/views/index.html'));
 })
 
-// app.get('/api', function (req, res) {
-//     res.send(mockAPIResponse);
-// })
+app.get('/testing', function (req, res) {
+    res.send(mockAPIResponse);
+})
 
 //Declarng new empty object
 let objMcData = {}; 
@@ -54,15 +54,11 @@ let objMcData = {};
 // POST Route
 app.post('/api', insertPost);
 async function insertPost(req, res) {
-    userInput = req.body.input;
-    console.log(`You entered: ${userInput}`);
-    const apiURL = `${baseURL}key=${apiKey}&url=${userInput}&lang=en`;
+    userInput = req.body.url;
+    const apiURL = `${baseURL}${apiKey}&url=${userInput}&lang=en`;
     const response = await fetch(apiURL);
-    console.log(userInput);
-    
+
     const mcData = await response.json();
-    res.send(mcData);
-    console.log(mcData);
     
     objMcData = {
         score: mcData.score_tag,
@@ -71,6 +67,9 @@ async function insertPost(req, res) {
         irony: mcData.irony,
         confidence: mcData.confidence
     }
+
+    console.log(`You entered: ${formText}`);
+    console.log(mcData);
     console.log(objMcData);
-    response.send(objMcData)
+    res.send(objMcData)
 };

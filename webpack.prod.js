@@ -31,6 +31,10 @@ module.exports = {
             },
             // Reference (https://webpack.js.org/loaders/file-loader/)
             {
+                test: /\.html$/,
+                use: ["html-loader"],
+            },
+            {
                 test: /\.(png|jpe?g|gif)$/i,
                 loader: 'file-loader',
                 options: {

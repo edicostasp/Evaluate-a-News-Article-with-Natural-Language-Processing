@@ -1,80 +1,52 @@
-const postData = async (url = "", data = {}) => {
-    console.log('Analyzing:', data);
-    const response = await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify(data)
-    });
-    try {
-        const newData = await response.json();
-        console.log('Data received:', newData)
-        return newData;
-    } catch (error) {
-        console.log('Error', error);
-    }
-};
-
 async function handleSubmit(event) {
     event.preventDefault()
+    let formText = document.getElementById('url').value;             // check what text was put into the form field
+    if(Client.checkForURL(formText)) {                              //Client.checkForName(formText)
+        fetch ('http://localhost:8081/api', {
+            method: 'POST',
+            credentials: 'same-origin',
+            cache: 'no-cache',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({ formText })
+        })
+        .then((res) => res.json())
 
-    // check what text was put into the form field
-    let formText = document.getElementById('input').value
-    if(Client.checkForURL(formText)) {              //Client.checkForName(formText)
-        console.log("::: Form Submitted :::")
-        postData('http://localhost:8081/api', {url: formText})     // fetch('http://localhost:8081/api')
-        // .then(res => res.json())
-        .then(function() {
-            updateUI();
+        .then((res) => {
+            updateUI(res);
         })
     } else {
-        alert('Seems like an invalid URL, please try with a valid URL.');
+        alert('Seems like that this URL is invalid, please try with a valid URL.');
     }
+    console.log("::: Form Submitted :::")
 }
 
-const updateUI = async() =>{
-    const url = "http://localhost:8081/api";
-    const req = await fetch (url);
-    try {
-        const info = await req.json();
-        document.getElementById('score').innerHTML = "Polarity: " + checkPolarity(info.score);
-        document.getElementById('agreement').innerHTML = "Agreement: " + checkAgreement(info.agreement);
-        document.getElementById('subjectivity').innerHTML = "Subjectivity: " + checkSubjectivity(info.subjectivity);
-        document.getElementById('irony').innerHTML = "Irony: " + checkIrony(info.irony);
-        document.getElementById('confidence').innerHTML = "Confidence: " + info.confidence;
-    }
-    catch (error) {
-        console.log("Error", error);
-    }
+async function updateUI(res) {
+        document.getElementById('confidence').innerHTML = "Confidence: " + res.confidence +"%";
+        document.getElementById('polarity').innerHTML = `Polarity score: + ${PolatiryCheckerResults(res.score)}`;
+        document.getElementById('subjectivity').innerHTML = "Subjectivity: " + res.subjectivity;
+        document.getElementById('agreement').innerHTML = "Agreement: " + res.agreement;
+        document.getElementById('irony').innerHTML = "Irony: " + res.irony;  
 }
 
 // API response output (https://www.meaningcloud.com/developer/sentiment-analysis/doc/2.1/response)
-const polarityChecker = (score) => {
-    let PolatiryCheckerResults;
-    switch (score){
-        case 'NEW':
-            PolatiryCheckerResults = '0 neutral';
-            break;
-        case 'P+':
-            PolatiryCheckerResults = '+++ Strong Positive';
-            break;
-        case 'P':
-            PolatiryCheckerResults = '+ Positive';
-            break;
-        case 'N':
-            PolatiryCheckerResults = '- negative';
-            break;
-        case 'N+':
-            PolatiryCheckerResults = '--- strong negative';
-            break;
-        case 'NONE':
-            PolatiryCheckerResults = 'no sentiment (Empty)';
+export const PolatiryCheckerResults = (score_tag) => {
+    if (score_tag === 'NEU'){
+        return 'Overall, neutral';
+    } else if (score_tag === 'P+'){
+        return '+++ Strong Positive'
+    } else if (score_tag === 'P'){
+        return '+ Positive'
+    } else if (score_tag === 'N+'){
+        return '--- strong negative'
+    } else if (score_tag === 'N'){
+        return '- negative'
+    } else {
+        return 'no sentiment (Empty Soul)';
     }
-    return PolatiryCheckerResults;
 }
 
 //Check the agreement
@@ -92,7 +64,5 @@ function checkAgreement(agreement){
 }
 
 export { handleSubmit }
-
-export { polarityChecker }
 
 export { checkAgreement }

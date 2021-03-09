@@ -25,20 +25,22 @@
         <main>
             <p>Please Enter a URL of an article or a blog to discover its sentiment evaluation.</p>
             <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="input" type="text" name="input" value="" placeholder="Enter an URL">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                <form class="" id="submit" onsubmit="return Client.handleSubmit(event)">
+                    <input id="url" type="text" name="url" value="" placeholder="Enter an URL">
+                    <input type="submit" id="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             </section>
 
             <section>
                 <strong>Form Results:</strong>
-                <div id="polarity"></div>
-                <div id="agreement"></div>
-                <div id="subjectivity"></div>
-                <div id="confidence"></div>
-                <div id="irony"></div>
-            </section>
+                <div id="resultados"><ul>   
+                    <div id="confidence"></div>
+                    <div id="polarity"></div>
+                    <div id="subjectivity"></div>
+                    <div id="agreement"></div>
+                    <div id="irony"></div>
+                    </ul>
+                </section>
         </main>
 
         <footer>

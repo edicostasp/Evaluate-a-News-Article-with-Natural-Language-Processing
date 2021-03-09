@@ -36,7 +36,7 @@ module.exports = {
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({
-            // path: path.join(__dirname, 'dist'),
+            path: path.join(__dirname, 'dist'),
             // Simulate the removal of files
             dry: true,
             // Write Logs to Console
