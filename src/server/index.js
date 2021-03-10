@@ -54,7 +54,7 @@ let objMcData = {};
 // POST Route
 app.post('/api', insertPost);
 async function insertPost(req, res) {
-    userInput = req.body.url;
+    userInput = req.body.formText;
     const apiURL = `${baseURL}${apiKey}&url=${userInput}&lang=en`;
     const response = await fetch(apiURL);
 
@@ -68,7 +68,6 @@ async function insertPost(req, res) {
         confidence: mcData.confidence
     }
 
-    console.log(`You entered: ${formText}`);
     console.log(mcData);
     console.log(objMcData);
     res.send(objMcData)
