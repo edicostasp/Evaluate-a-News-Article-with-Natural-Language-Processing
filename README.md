@@ -4,21 +4,22 @@ This project aims to build a web tool that allows users to run a Natural Languag
 ## Build Tools
 * HTML
 * CSS
-* JavaScript
 * Node
 * Express
-* Webpack
+* JavaScript
 * Meaningcloud API
-* Jest
+* Webpack
 * Workbox
-## Goal of this project:
+* Jest
+## Goal of this Web project:
+
 * Practice:
     * Setting up Webpack
-    * Sass styles
     * Webpack Loaders and Plugins
+    * Sass styles
+    * Using APIs and creating requests to external URLs
     * Creating layouts and page design
     * Service workers
-    * Using APIs and creating requests to external URLs
 
 ## Installation
 Make sure Node and npm are installed from the terminal.
@@ -44,20 +45,20 @@ npm install
 # Choose the necessary installation for your development mode
 npm i -D @babel/core @babel/preset-env babel-loader
 npm i -D style-loader node-sass css-loader sass-loader
-npm i -D clean-webpack-plugin
-npm i -D html-webpack-plugin
 npm i -D mini-css-extract-plugin
+npm i -D html-webpack-plugin
+npm i -D clean-webpack-plugin
 npm i -D optimize-css-assets-webpack-plugin terser-webpack-plugin
 ````
-5. Sign up for an API key at [meaningcloud.com](https://www.meaningcloud.com/developer/create-account)
+5. Sign up for the API key at [meaningcloud.com](https://www.meaningcloud.com/developer/create-account)
 
 6. Configure environment variables using dotenv package
-	1. Install the dotenv package
+	1. Install dotenv package properly
 	````
 	npm install dotenv
 	````
-	2. Create a new `.env` file in the root of your project
-	3. Fill the `.env` file with your API key like this:
+	2. Create a new `.env` file in the root of the project
+	3. Fill the `.env` file with your API key as shown:
 	````
 	API_KEY=**************************
 	````
@@ -65,11 +66,11 @@ npm i -D optimize-css-assets-webpack-plugin terser-webpack-plugin
 
 Command | Action
 :------------: | :-------------:
-`npm run build-prod` | Build project
-`npm start` | Run project
+`npm run build-prod` | Build the project
+`npm start` | Run the project
 
 8. Open browser at http://localhost:8081/
 ## How to use it:
-1. Input a valid URL in the field "Enter the URL";
+1. Insert a valid URL in "Enter the URL";
 1. Click on the "Submit" button;
-1. Results are presented in the "Results:" area.
+1. Results are shown in the "Results:" area.
