@@ -18,12 +18,12 @@ describe("Check a valid URL", () => {
 describe("Check an invalid URL", () => {
   test('Testing an invalid URL', () => {
       const inputUrl = 'www.udacity.com';
-      const response = false;
+      const response = true;
       expect(checkForURL(inputUrl)).toEqual(response);
   });
   test('Testing an invalid URL', () => {
     const inputUrl = 'udacity.com';
-    const response = false;
+    const response = true;
     expect(checkForURL(inputUrl)).toEqual(response);
   });
   test('Testing an invalid URL', () => {
