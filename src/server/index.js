@@ -55,7 +55,8 @@ let objMcData = {};
 app.post('/api', insertPost);
 async function insertPost(req, res) {
     userInput = req.body.formText;
-    const apiURL = `${baseURL}${apiKey}&url=${userInput}&lang=en`;
+    lang = 'en';
+    const apiURL = `${baseURL}${apiKey}&lang=${lang}&url=${userInput}`;
     const response = await fetch(apiURL);
 
     const mcData = await response.json();
